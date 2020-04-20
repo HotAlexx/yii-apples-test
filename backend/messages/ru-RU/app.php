@@ -1,5 +1,7 @@
 <?php
 return [
+    'Yes' => 'Да',
+    'No' => 'Нет',
     'Apples' => 'Яблоки',
     'Create Apple' => 'Создать яблоко',
     'Undefined apple color' => 'Не бывает яблок такого цвета!',

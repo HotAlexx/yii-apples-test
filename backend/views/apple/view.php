@@ -39,26 +39,26 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=> 'date_of_birth',
                 'value'=> function ($model){
-                    return ($model->date_of_birth === null ? "Нет" : date('d-m-Y H:i:s', $model->date_of_birth));
+                    return ($model->date_of_birth === null ? Yii::t('app', 'No') : date('d-m-Y H:i:s', $model->date_of_birth));
                 },
             ],
             [
                 'attribute'=> 'date_of_fall',
                 'value'=> function ($model){
-                    return ($model->date_of_fall === null ? "Нет" : date('d-m-Y H:i:s', $model->date_of_fall));
+                    return ($model->date_of_fall === null ? Yii::t('app', 'No') : date('d-m-Y H:i:s', $model->date_of_fall));
                 },
             ],
             'percent',
             [
                 'attribute'=> 'is_fell',
                 'value'=> function ($model){
-                    return ($model->is_fell ? "Да" : "Нет");
+                    return ($model->is_fell ? Yii::t('app', 'Yes') : Yii::t('app', 'No'));
                 },
             ],
             [
                 'attribute'=> 'is_rotten',
                 'value'=> function ($model){
-                    return ($model->is_rotten ? "Да" : "Нет");
+                    return ($model->is_rotten ? Yii::t('app', 'Yes') : Yii::t('app', 'No'));
                 },
             ],
         ],
