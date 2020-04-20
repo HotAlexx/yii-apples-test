@@ -25,7 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'color',
+            [
+                'attribute'=> 'color',
+                'value'=> function ($model){
+                    return Yii::t('app', $model->color);
+                },
+            ],
             [
                 'attribute'=> 'date_of_birth',
                 'value'=> function ($model){

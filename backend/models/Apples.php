@@ -17,6 +17,7 @@ use Yii;
  */
 class Apples extends \yii\db\ActiveRecord
 {
+    public $allowedColors = ['red', 'green', 'yellow', 'white', 'unexpected'];
 
     public function init()
     {
@@ -51,6 +52,7 @@ class Apples extends \yii\db\ActiveRecord
             [['is_fell', 'is_rotten'], 'boolean'],
             [['percent'], 'number'],
             [['color'], 'string', 'max' => 255],
+            [['color'], 'validColor'],
         ];
     }
 
@@ -68,5 +70,25 @@ class Apples extends \yii\db\ActiveRecord
             'is_fell' => 'Упало с дерева',
             'is_rotten' => 'Гнилое',
         ];
+    }
+
+    public function validColor($attribute, $params)
+    {
+        if (!in_array($this->$attribute, $this->allowedColors)) {
+            $this->addError($attribute, Yii::t('app', 'Undefined apple color'));
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public function colorList() : array
+    {
+        $list = [];
+        foreach ($this->allowedColors as $color) {
+            $list[$color] = Yii::t('app', $color);
+        }
+        return $list;
     }
 }
