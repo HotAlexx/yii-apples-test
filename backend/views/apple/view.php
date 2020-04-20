@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'color',
             'date_of_birth',
             'date_of_fall',
-            'status',
             'percent',
             'is_fell',
             'is_rotten',

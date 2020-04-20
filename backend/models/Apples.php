@@ -11,16 +11,16 @@ use Yii;
  * @property string $color
  * @property string|null $date_of_birth
  * @property string|null $date_of_fall
- * @property int $status
  * @property float $percent
  * @property int $is_fell
  * @property int $is_rotten
  */
 class Apples extends \yii\db\ActiveRecord
 {
-    public function __construct($color, $config = [])
+
+    public function init()
     {
-        $this->color = $color;
+        parent::init();
 
         // Generate random date_of_birth
         $start = mktime(0,0,0,1,1,2020);
@@ -30,8 +30,6 @@ class Apples extends \yii\db\ActiveRecord
         $this->percent = 100;
         $this->is_fell = false;
         $this->is_rotten = false;
-
-        parent::__construct($config);
     }
 
     /**
@@ -48,9 +46,9 @@ class Apples extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['color', 'status', 'percent', 'is_fell', 'is_rotten'], 'required'],
+            [['color', 'percent', 'is_fell', 'is_rotten'], 'required'],
             [['date_of_birth', 'date_of_fall'], 'safe'],
-            [['status', 'is_fell', 'is_rotten'], 'integer'],
+            [['is_fell', 'is_rotten'], 'boolean'],
             [['percent'], 'number'],
             [['color'], 'string', 'max' => 255],
         ];
@@ -63,13 +61,12 @@ class Apples extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'color' => 'Color',
-            'date_of_birth' => 'Date Of Birth',
-            'date_of_fall' => 'Date Of Fall',
-            'status' => 'Status',
-            'percent' => 'Percent',
-            'is_fell' => 'Is Fell',
-            'is_rotten' => 'Is Rotten',
+            'color' => 'Цвет',
+            'date_of_birth' => 'Дата появления',
+            'date_of_fall' => 'Дата падения',
+            'percent' => 'Целостность',
+            'is_fell' => 'Упало с дерева',
+            'is_rotten' => 'Гнилое',
         ];
     }
 }

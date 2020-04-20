@@ -75,10 +75,12 @@ class AppleController extends Controller
     public function actionCreate()
     {
         $model = new Apples();
+        $model->load(Yii::$app->request->post());
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        //var_dump($model->attributes);die();
 
         return $this->render('create', [
             'model' => $model,
