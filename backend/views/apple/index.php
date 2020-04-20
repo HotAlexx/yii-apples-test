@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Apples'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Apple'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -26,11 +26,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'color',
-            'date_of_birth',
-            'date_of_fall',
+            [
+                'attribute'=> 'date_of_birth',
+                'value'=> function ($model){
+                    return ($model->date_of_birth === null ? "Нет" : date('d-m-Y H:i:s', $model->date_of_birth));
+                },
+            ],
+            [
+                'attribute'=> 'date_of_fall',
+                'value'=> function ($model){
+                    return ($model->date_of_fall === null ? "Нет" : date('d-m-Y H:i:s', $model->date_of_fall));
+                },
+            ],
             'percent',
-            'is_fell',
-            'is_rotten',
+            [
+                'attribute'=> 'is_fell',
+                'value'=> function ($model){
+                    return ($model->is_fell ? "Да" : "Нет");
+                },
+            ],
+            [
+                'attribute'=> 'is_rotten',
+                'value'=> function ($model){
+                    return ($model->is_rotten ? "Да" : "Нет");
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
