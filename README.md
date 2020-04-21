@@ -7,7 +7,7 @@
 -------------------
 Склонировать репозиторий:
 ```
-git clone
+git clone git@github.com:HotAlexx/yii-apples-test.git
 ```
 Установить зависимости:
 ```
