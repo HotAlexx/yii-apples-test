@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'allowedPercent')->hiddenInput()->label(false); ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Eat'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Eat'), ['class' => 'btn btn-primary', 'name' => 'eat-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

@@ -4,7 +4,6 @@ namespace app\models;
 
 use Yii;
 use yii\base\Exception;
-use yii\web\HttpException;
 
 /**
  * This is the model class for table "apples".
@@ -76,6 +75,13 @@ class Apples extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Validate color
+     *
+     * @param $attribute
+     * @param $params
+     * @return bool
+     */
     public function validColor($attribute, $params)
     {
         if (!in_array($this->$attribute, $this->allowedColors)) {
@@ -87,6 +93,11 @@ class Apples extends \yii\db\ActiveRecord
 
     }
 
+    /**
+     * Make color list
+     *
+     * @return array
+     */
     public function colorList() : array
     {
         $list = [];
@@ -96,6 +107,11 @@ class Apples extends \yii\db\ActiveRecord
         return $list;
     }
 
+    /**
+     * Fall apple
+     *
+     * @return bool
+     */
     public function fall()
     {
         $this->is_fell = true;
@@ -105,6 +121,8 @@ class Apples extends \yii\db\ActiveRecord
     }
 
     /**
+     * Eat apple
+     *
      * @param $percent
      * @return bool
      * @throws Exception
@@ -119,6 +137,11 @@ class Apples extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Check rot apple
+     *
+     * @return bool
+     */
     public function checkRot()
     {
         if (!$this->is_rotten && $this->is_fell) {
@@ -128,5 +151,7 @@ class Apples extends \yii\db\ActiveRecord
                 $this->save();
             }
         }
+
+        return true;
     }
 }

@@ -130,6 +130,16 @@ class AppleController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * Eat apple controller
+     *
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\Exception
+     * @throws \yii\db\StaleObjectException
+     */
     public function actionEat($id)
     {
 
@@ -161,6 +171,11 @@ class AppleController extends Controller
         ]);
     }
 
+    /**
+     * Create random apples controller
+     *
+     * @return \yii\web\Response
+     */
     public function actionCreaterandom()
     {
         $quantity = rand(1, 10);

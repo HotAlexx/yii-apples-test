@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * ContactForm is the model behind the contact form.
+ * EatForm is the model for eating form.
  */
 class EatForm extends Model
 {
@@ -35,6 +35,13 @@ class EatForm extends Model
         ];
     }
 
+    /**
+     * Percent validation
+     *
+     * @param $attribute
+     * @param $params
+     * @return bool
+     */
     public function percentValidation($attribute, $params)
     {
         if ($this->percent > $this->allowedPercent) {

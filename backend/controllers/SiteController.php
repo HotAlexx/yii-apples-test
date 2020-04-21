@@ -60,10 +60,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $start = mktime(0,0,0,1,1,2020);
-        $end  = time();
-        $randomStamp = rand($start,$end);
-        echo date('Y-m-d',$randomStamp); die();
         return $this->render('index');
     }
 

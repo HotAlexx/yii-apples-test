@@ -24,4 +24,7 @@ return [
     'The apple is eaten completely and has been removed.' => 'Яблоко съедено полностью и было удалено.',
     'Too big percent!' => 'Слишком большой процент!',
     'Create random apples' => 'Создание рандомных яблок',
+    'Garden Control Panel' => 'Панель управления садом',
+    'You can control apples in the garden' => 'Ты можешь управлять яблоками в саду',
+    'Try it now!' => 'Попробовать сейчас!',
 ];
