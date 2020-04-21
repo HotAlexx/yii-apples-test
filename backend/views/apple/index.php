@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return !$model->is_fell;
                     },
                     'eat' => function ($model, $key, $index) {
-                        return ($model->is_fell && $model->percent > 0);
+                        return ($model->is_fell && $model->percent > 0 && !$model->is_rotten);
                     }
                 ],
                 'buttons' => [

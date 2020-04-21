@@ -11,7 +11,7 @@ use yii\base\Model;
 class EatForm extends Model
 {
     public $percent;
-
+    public $allowedPercent;
 
     /**
      * {@inheritdoc}
@@ -21,6 +21,7 @@ class EatForm extends Model
         return [
             ['percent', 'required'],
             ['percent', 'integer'],
+            ['percent', 'percentValidation'],
         ];
     }
 
@@ -32,6 +33,18 @@ class EatForm extends Model
         return [
             'percent' => Yii::t('app', 'Percent'),
         ];
+    }
+
+    public function percentValidation($attribute, $params)
+    {
+        if ($this->percent > $this->allowedPercent) {
+            $this->addError($attribute, Yii::t('app', 'Too big percent!'));
+            return false;
+        } else {
+            return true;
+        }
+
+
     }
 
 }

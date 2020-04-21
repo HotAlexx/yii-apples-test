@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(['id' => 'eating-form']); ?>
 
                 <?= $form->field($model, 'percent')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'allowedPercent')->hiddenInput()->label(false); ?>
 
                 <div class="form-group">
                     <?= Html::submitButton(Yii::t('app', 'Eat'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

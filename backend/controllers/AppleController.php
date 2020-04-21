@@ -133,6 +133,8 @@ class AppleController extends Controller
 
         $model = new EatForm();
         $apple = $this->findModel($id);
+        $model->allowedPercent = $apple->percent;
+
         if ($apple->percent <=0 || !$apple->is_fell || $apple->is_rotten) {
             Yii::$app->session->setFlash('error', Yii::t('app', 'You can’t eat an apple that has not fallen, rotten, or has already been eaten!'));
 
@@ -141,7 +143,12 @@ class AppleController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $apple->eat($model->percent);
-            $apple->save();
+            if ($apple->percent > 0) {
+                $apple->save();
+            } else {
+                Yii::$app->session->setFlash('success', Yii::t('app', 'The apple is eaten completely and has been removed.'));
+                $apple->delete();
+            }
 
             return $this->redirect(['index']);
         }
