@@ -46,6 +46,8 @@ class AppleController extends Controller
      */
     public function actionIndex()
     {
+        $this->checkRotApples();
+
         $dataProvider = new ActiveDataProvider([
             'query' => Apples::find(),
         ]);
@@ -185,5 +187,13 @@ class AppleController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    protected function checkRotApples()
+    {
+        $apples = Apples::find()->all();
+        foreach ($apples as $apple) {
+            $apple->checkRot();
+        }
     }
 }

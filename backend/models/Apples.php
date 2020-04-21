@@ -19,6 +19,8 @@ use yii\web\HttpException;
  */
 class Apples extends \yii\db\ActiveRecord
 {
+    const TIME_TO_ROTE = 18000; // 5 hours
+
     public $allowedColors = ['red', 'green', 'yellow', 'white', 'unexpected'];
 
     public function init()
@@ -114,6 +116,17 @@ class Apples extends \yii\db\ActiveRecord
             return true;
         } else {
             throw new Exception(Yii::t('app', 'Bad request.'), '400');
+        }
+    }
+
+    public function checkRot()
+    {
+        if (!$this->is_rotten && $this->is_fell) {
+            $time_falling = time() - $this->date_of_fall;
+            if ($time_falling >= self::TIME_TO_ROTE) {
+                $this->is_rotten = true;
+                $this->save();
+            }
         }
     }
 }
