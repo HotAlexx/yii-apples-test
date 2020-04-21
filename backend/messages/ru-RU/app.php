@@ -23,4 +23,5 @@ return [
     'You can’t eat an apple that has not fallen, rotten, or has already been eaten!' => 'Нельзя съесть неупавшее, гнилое или уже съеденное яблоко!',
     'The apple is eaten completely and has been removed.' => 'Яблоко съедено полностью и было удалено.',
     'Too big percent!' => 'Слишком большой процент!',
+    'Create random apples' => 'Создание рандомных яблок',
 ];
