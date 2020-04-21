@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Exception;
+use yii\web\HttpException;
 
 /**
  * This is the model class for table "apples".
@@ -90,5 +92,28 @@ class Apples extends \yii\db\ActiveRecord
             $list[$color] = Yii::t('app', $color);
         }
         return $list;
+    }
+
+    public function fall()
+    {
+        $this->is_fell = true;
+        $this->date_of_fall = time();
+        $this->save();
+        return true;
+    }
+
+    /**
+     * @param $percent
+     * @return bool
+     * @throws Exception
+     */
+    public function eat($percent)
+    {
+        if ($this->is_fell && !$this->is_rotten && ($this->percent - $percent) >= 0) {
+            $this->percent -= $percent;
+            return true;
+        } else {
+            throw new Exception(Yii::t('app', 'Bad request.'), '400');
+        }
     }
 }

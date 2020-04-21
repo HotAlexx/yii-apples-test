@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\EatForm;
 use Yii;
 use app\models\Apples;
 use yii\data\ActiveDataProvider;
@@ -80,7 +81,6 @@ class AppleController extends Controller
         if ($model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-        //var_dump($model->attributes);die();
 
         return $this->render('create', [
             'model' => $model,
@@ -119,6 +119,37 @@ class AppleController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionFall($id)
+    {
+        $this->findModel($id)->fall();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionEat($id)
+    {
+
+        $model = new EatForm();
+        $apple = $this->findModel($id);
+        if ($apple->percent <=0 || !$apple->is_fell || $apple->is_rotten) {
+            Yii::$app->session->setFlash('error', Yii::t('app', 'You can’t eat an apple that has not fallen, rotten, or has already been eaten!'));
+
+            return $this->redirect(['index']);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $apple->eat($model->percent);
+            $apple->save();
+
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('eat', [
+            'model' => $model,
+            'id' => $id,
+        ]);
     }
 
     /**
